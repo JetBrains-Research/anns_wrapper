@@ -26,7 +26,7 @@ distances = {
 }
 
 
-class MVP_annoy_Wrapper:
+class MVPAnnoyWrapper:
     """
     Bruteforce realisation.
     """
@@ -74,7 +74,7 @@ if __name__ == '__main__':
     """
     vectors = get_random_vectors(10000, 30, rank=10000, save=True)
 
-    w = MVP_annoy_Wrapper(30, 'hamming')
+    w = MVPAnnoyWrapper(30, 'hamming')
     w.add_vectors_to_index(vectors)
 
     w.build_index()
