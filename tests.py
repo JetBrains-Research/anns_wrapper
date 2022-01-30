@@ -80,3 +80,24 @@ class AnnoyMVPTestMethods(unittest.TestCase):
         self.assertEqual(len(self.wrapper.deleted_ids), 0)
         self.assertEqual(self.wrapper.index.get_n_items(), len(self.dataset) * 2 - len(self.dataset) // 2)
 
+    def test_search_index(self):
+        from annoy import AnnoyIndex
+        self.test_add_vectors_to_index()
+        self.add_vectors()
+
+        index = AnnoyIndex(self.dimensions, self.wrapper.distance_name)
+        for i, v in enumerate(self.dataset):
+            index.add_item(i, v)
+        for i, v in enumerate(self.dataset):
+            index.add_item(len(self.dataset) + i, v)
+        index.build(self.trees)
+
+        confirmed_neighbours = index.get_nns_by_vector(self.wrapper.pool[0][1], len(self.wrapper.pool) // 2)
+        mvp_neighbours = self.wrapper.search(self.wrapper.pool[0][1], len(self.wrapper.pool) // 2,
+                                             include_distances=False)
+
+        precision = sum(
+            [any([int(mvp_neighbour == neighbour) for neighbour in confirmed_neighbours]) for mvp_neighbour in
+             mvp_neighbours]) / len(mvp_neighbours)
+        self.assertEqual(len(mvp_neighbours), len(self.wrapper.pool) // 2)
+        self.assertTrue(precision >= 0.95)

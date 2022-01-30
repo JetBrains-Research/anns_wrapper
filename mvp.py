@@ -111,8 +111,8 @@ class MVPAnnoyWrapper(NNSWrapper):
         self.max_item_num += 1
 
     def add_vector_to_pool(self, vector: numpy.ndarray):
-        self.max_item_num += 1
         self.pool.append([self.max_item_num, vector])
+        self.max_item_num += 1
 
     def add_vector(self, vector: numpy.ndarray):
         if self.is_built:
@@ -140,7 +140,6 @@ class MVPAnnoyWrapper(NNSWrapper):
         index = AnnoyIndex(self.dimensions, self.distance_name)
 
         skipped = 0
-        print(self.deleted_ids)
         for i in range(self.index.get_n_items()):
             if i not in self.deleted_ids:
                 index.add_item(i - skipped, self.index.get_item_vector(i))
