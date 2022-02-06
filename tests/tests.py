@@ -1,7 +1,7 @@
 import unittest
 
-from helpers import get_random_vectors
-from mvp import MVPAnnoyWrapper
+from utility.helpers import get_random_vectors
+from wrappers.annoy_wrapper import MVPAnnoyWrapper
 
 
 class AnnoyMVPTestMethods(unittest.TestCase):
