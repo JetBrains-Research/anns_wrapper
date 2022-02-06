@@ -1,4 +1,4 @@
 annoy
-flann
+pyflann
 nmslib
 pandas
