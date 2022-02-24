@@ -3,8 +3,8 @@ from typing import Any, List
 import numpy
 from annoy import AnnoyIndex
 
-from interface import NNSWrapper
 from utility.metrics import Metrics
+from wrappers.interface import NNSWrapper
 
 
 class MVPAnnoyWrapper(NNSWrapper):

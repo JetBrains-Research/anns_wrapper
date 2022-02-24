@@ -11,7 +11,7 @@ def get_random_vectors(num: int, dimensions: int, rank: int = 1000, save: bool =
     """
     load or generate random vectors. Generated vectors can be saved if wanted.
     """
-    filename = f"./datasets/{num}_{dimensions}_{rank}_vectors.csv"
+    filename = f"../datasets/{num}_{dimensions}_{rank}_vectors.csv"
 
     if os.path.isfile(filename):
         vectors = np.loadtxt(filename)
