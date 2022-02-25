@@ -5,7 +5,7 @@ import pyflann
 from pyflann import FLANN
 
 from utility.helpers import get_random_vectors
-from wrappers.flann import FlannWrapper
+from wrappers.flann_wrapper import FlannWrapper
 
 
 class FlannMVPTestMethods(unittest.TestCase):

@@ -15,6 +15,7 @@ def get_random_vectors(num: int, dimensions: int, rank: int = 1000, save: bool =
 
     if os.path.isfile(filename):
         vectors = np.loadtxt(filename)
+        print("Loaded")
     else:
         vectors = generate_random_vectors(num, dimensions, rank)
         if save:
